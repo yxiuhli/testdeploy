@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import { Table, Button, Typography, Card, Space } from "antd";
 import { DeleteOutlined, DoubleRightOutlined } from "@ant-design/icons";
 import { useCart } from "@/contexts/CartContext";
-import Link from "next/link";
 import Image from "next/image";
 
 const { Title, Text } = Typography;

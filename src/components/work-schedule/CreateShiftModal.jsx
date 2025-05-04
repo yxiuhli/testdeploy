@@ -1,9 +1,15 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { PlusOutlined } from "@ant-design/icons";
-import { Modal, Form, Input, Button, DatePicker, TimePicker, Select, Avatar } from "antd";
-import AdminWorkSchedule from "@/components/work-schedule/AdminWorkSchedule";
-import { useWorkShifts } from "@/hooks/useWorkShifts";
+import {
+  Modal,
+  Form,
+  Input,
+  Button,
+  DatePicker,
+  TimePicker,
+  Select,
+  Avatar,
+} from "antd";
 import { useEmployees } from "@/hooks/useEmployees";
 
 const { RangePicker } = TimePicker;
@@ -21,7 +27,7 @@ const CreateShiftModal = ({ visible, onCancel, onCreate }) => {
       setEmployees(data);
       setLoading(false);
     };
-    
+
     if (visible) {
       loadEmployees();
     }
@@ -77,7 +83,7 @@ const CreateShiftModal = ({ visible, onCancel, onCreate }) => {
           label="Date"
           rules={[{ required: true, message: "Please select the date!" }]}
         >
-          <DatePicker format="YYYY-MM-DD" style={{ width: '100%' }} />
+          <DatePicker format="YYYY-MM-DD" style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item
@@ -85,13 +91,15 @@ const CreateShiftModal = ({ visible, onCancel, onCreate }) => {
           label="Time Range"
           rules={[{ required: true, message: "Please select the time range!" }]}
         >
-          <RangePicker format="HH:mm" style={{ width: '100%' }} />
+          <RangePicker format="HH:mm" style={{ width: "100%" }} />
         </Form.Item>
 
         <Form.Item
           name="employees"
           label="Assign Employees"
-          rules={[{ required: true, message: "Please select at least one employee!" }]}
+          rules={[
+            { required: true, message: "Please select at least one employee!" },
+          ]}
         >
           <Select
             mode="multiple"
@@ -112,7 +120,7 @@ const CreateShiftModal = ({ visible, onCancel, onCreate }) => {
                   <div>
                     <span>{`${employee.firstName} ${employee.lastName}`}</span>
                     <div className="text-xs text-gray-500">
-                      {employee.position?.replace(/_/g, ' ')}
+                      {employee.position?.replace(/_/g, " ")}
                     </div>
                   </div>
                 </div>

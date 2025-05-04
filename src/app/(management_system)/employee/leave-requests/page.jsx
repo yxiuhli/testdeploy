@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Card, Statistic, Tag } from "antd";
+import { Card, Statistic } from "antd";
 import { useRouter } from "next/navigation";
 import {
   DownCircleOutlined,
@@ -51,7 +51,7 @@ const EmployeeLeaveRequest = () => {
         <h1 className="text-2xl font-bold">LEAVE REQUESTS</h1>
       </div>
       <div className="pl-12 pr-8 mt-8">
-      <div className="flex justify-between gap-8 mb-4">
+        <div className="flex justify-between gap-8 mb-4">
           <Card
             bordered={false}
             className="w-72 mb-4 bg-blue-50 border-solid border-2 border-blue-400"

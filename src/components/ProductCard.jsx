@@ -2,7 +2,6 @@
 import React from "react";
 import { Card, Space, Typography, Tag, Button } from "antd";
 import Link from "next/link";
-import Rating from "@/components/Rating";
 import { ShoppingCartIcon } from "lucide-react";
 
 const { Text, Paragraph } = Typography;

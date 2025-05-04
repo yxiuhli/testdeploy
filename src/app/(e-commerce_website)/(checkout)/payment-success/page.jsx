@@ -1,20 +1,19 @@
-'use client';
-import { useState, useEffect, use } from 'react';
+"use client";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Result, Spin, Button } from 'antd';
-import { CheckCircleFilled, CloseCircleFilled } from '@ant-design/icons';
+import { Result, Spin, Button } from "antd";
+import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
 
 const PaymentSuccess = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
   const searchParams = useSearchParams();
 
-  const orderId = searchParams.get('orderId');
-  const paymentId = searchParams.get('paymentId');
-  const payerId = searchParams.get('PayerID');
-
+  const orderId = searchParams.get("orderId");
+  const paymentId = searchParams.get("paymentId");
+  const payerId = searchParams.get("PayerID");
 
   useEffect(() => {
     const executePayment = async () => {
@@ -24,9 +23,9 @@ const PaymentSuccess = () => {
         const response = await fetch(
           `http://localhost:8080/api/orders/${orderId}/execute-payment`,
           {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({
               paymentId,
@@ -36,7 +35,7 @@ const PaymentSuccess = () => {
         );
 
         if (!response.ok) {
-          throw new Error('Payment execution failed');
+          throw new Error("Payment execution failed");
         }
 
         setIsLoading(false);
@@ -73,13 +72,13 @@ const PaymentSuccess = () => {
               type="primary"
               key="contact"
               className="bg-blue-500 hover:bg-blue-600"
-              onClick={() => router.push('/contact')}
+              onClick={() => router.push("/contact")}
             >
               Contact Support
             </Button>,
             <Button
               key="home"
-              onClick={() => router.push('/')}
+              onClick={() => router.push("/")}
               className="hover:bg-gray-100"
             >
               Back Home
@@ -100,7 +99,7 @@ const PaymentSuccess = () => {
         extra={[
           <Button
             key="home"
-            onClick={() => router.push('/')}
+            onClick={() => router.push("/")}
             className="hover:bg-gray-100"
           >
             Back Home

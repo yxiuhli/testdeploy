@@ -1,6 +1,6 @@
 import "./globals.css";
 import { CategoriesProvider } from "@/contexts/CategoriesContext";
-
+import React from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 
 export const metadata = {

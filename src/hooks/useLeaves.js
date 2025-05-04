@@ -1,4 +1,4 @@
-// hooks/useLeaves.js
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 import { useAuth } from "@/contexts/AuthContext";
 
 export const useLeaves = () => {
@@ -6,7 +6,7 @@ export const useLeaves = () => {
   
   const submitRequest = async (requestData) => {
     try {
-      const response = await authFetch('http://localhost:8080/api/leave-requests', {
+      const response = await authFetch(`${API_BASE_URL}/leave-requests`, {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {
@@ -22,7 +22,7 @@ export const useLeaves = () => {
 
   const getEmployeeRequests = async () => {
     try {
-      const response = await authFetch(`http://localhost:8080/api/leave-requests/employee`);
+      const response = await authFetch(`${API_BASE_URL}/leave-requests/employee`);
       return await response.json();
     } catch (error) {
       console.error("Error fetching employee leave requests:", error);
@@ -32,7 +32,7 @@ export const useLeaves = () => {
 
   const updateRequest = async (requestId, status, adminComment) => {
     try {
-      const response = await authFetch(`http://localhost:8080/api/leave-requests/${requestId}`, {
+      const response = await authFetch(`${API_BASE_URL}/leave-requests/${requestId}`, {
         method: 'PUT',
         body: JSON.stringify({ status, adminComment }),
         headers: {
@@ -48,7 +48,7 @@ export const useLeaves = () => {
 
   const getPendingRequests = async () => {
     try {
-      const response = await authFetch('http://localhost:8080/api/leave-requests/pending');
+      const response = await authFetch(`${API_BASE_URL}/leave-requests/pending`);
       return await response.json();
     } catch (error) {
       console.error("Error fetching pending leave requests:", error);
@@ -58,7 +58,7 @@ export const useLeaves = () => {
 
   const getReviewedRequests = async () => {
     try {
-      const response = await authFetch('http://localhost:8080/api/leave-requests/reviewed');
+      const response = await authFetch(`${API_BASE_URL}/leave-requests/reviewed`);
       return await response.json();
     } catch (error) {
       console.error("Error fetching reviewed leave requests:", error);

@@ -1,3 +1,4 @@
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 import { useAuth } from "@/contexts/AuthContext";
 
 export const useWorkShifts = () => {
@@ -5,7 +6,7 @@ export const useWorkShifts = () => {
     
     const createWorkShift = async (workShift) => {
         try {
-            const response = await authFetch("http://localhost:8080/api/work-shifts", {
+            const response = await authFetch(`${API_BASE_URL}/work-shifts`, {
                 method: "POST",
                 body: JSON.stringify(workShift),
             });
@@ -17,7 +18,7 @@ export const useWorkShifts = () => {
 
     const deleteWorkShift = async (shiftId) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/work-shifts/${shiftId}`, {
+            const response = await authFetch(`${API_BASE_URL}/work-shifts/${shiftId}`, {
                 method: "DELETE",
             });
             return await response.json();
@@ -28,7 +29,7 @@ export const useWorkShifts = () => {
 
     const getWorkShifts = async () => {
         try {
-            const response = await authFetch("http://localhost:8080/api/work-shifts");
+            const response = await authFetch(`${API_BASE_URL}/work-shifts`);
             return await response.json();
         } catch (error) {
             console.error("Error fetching work shifts:", error);
@@ -37,7 +38,7 @@ export const useWorkShifts = () => {
 
     const getShiftsOfEmployee = async (employeeId) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/work-shifts/employee`);
+            const response = await authFetch(`${API_BASE_URL}/work-shifts/employee`);
             return await response.json();
         } catch (error) {
             console.error("Error fetching work shift by employee ID:", error);
@@ -45,7 +46,7 @@ export const useWorkShifts = () => {
     };
     const getEmployeesByShiftId = async (shiftId) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/employees/work-shift/${shiftId}`);
+            const response = await authFetch(`${API_BASE_URL}/employees/work-shift/${shiftId}`);
             return await response.json();
         } catch (error) {
             console.error("Error fetching employees by shift ID:", error);

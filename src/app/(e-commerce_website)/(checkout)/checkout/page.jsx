@@ -4,8 +4,6 @@ import { Form, Input, Select, Button, Radio } from "antd";
 import Image from "next/image";
 import { useCart } from "@/contexts/CartContext";
 
-const { Option } = Select;
-
 const CheckoutPage = () => {
   const [form] = Form.useForm();
 
@@ -13,7 +11,7 @@ const CheckoutPage = () => {
 
   const calculateTotal = () => {
     const total = cart.items.reduce((sum, item) => sum + item.price, 0);
-    return       total;
+    return total;
   };
 
   const onFinish = (values) => {
@@ -26,12 +24,12 @@ const CheckoutPage = () => {
         <div className="text-2xl font-semibold mb-4">
           <h1>Checkout</h1>
         </div>
-        <hr/>
+        <hr />
 
         <div className="grid grid-cols-1 md:grid-cols-2 divide-x gap-8 py-6">
           {/* Left Column - Form */}
           <div className="rounded-lg">
-          <h2 className="text-lg font-semibold mb-4">Shipping Information</h2>
+            <h2 className="text-lg font-semibold mb-4">Shipping Information</h2>
             <Form form={form} layout="vertical" onFinish={onFinish}>
               <Form.Item
                 name="fullName"
@@ -43,7 +41,6 @@ const CheckoutPage = () => {
                 <Input placeholder="Enter full name" className="py-2" />
               </Form.Item>
 
-
               <Form.Item
                 name="phone"
                 label="Phone number"
@@ -51,10 +48,7 @@ const CheckoutPage = () => {
                   { required: true, message: "Please enter your phone number" },
                 ]}
               >
-                <Input
-                  placeholder="Enter phone number"
-                  className="py-2"
-                />
+                <Input placeholder="Enter phone number" className="py-2" />
               </Form.Item>
               <Form.Item
                 name="address"
@@ -94,42 +88,44 @@ const CheckoutPage = () => {
               <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
 
               {cart.items.length > 0 ? (
-              cart.items.map((item) => (
-                <div key={`${item.id}-${item.size}`} className="flex items-center justify-between py-4 border-b">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-gray-100 rounded-lg">
-                      <Image
-                        src={item.image || "/api/placeholder/64/64"}
-                        alt={item.name}
-                        width={64}
-                        height={64}
-                        className="rounded-lg h-16 w-16 object-cover"
-                      />
+                cart.items.map((item) => (
+                  <div
+                    key={`${item.id}-${item.size}`}
+                    className="flex items-center justify-between py-4 border-b"
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="w-16 h-16 bg-gray-100 rounded-lg">
+                        <Image
+                          src={item.image || "/api/placeholder/64/64"}
+                          alt={item.name}
+                          width={64}
+                          height={64}
+                          className="rounded-lg h-16 w-16 object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="font-medium">{item.name}</h3>
+                        <p className="text-sm text-gray-500">
+                          {item.quantity}x · {item.size && `Size: ${item.size}`}
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="font-medium">{item.name}</h3>
-                      <p className="text-sm text-gray-500">
-                        {item.quantity}x · {item.size && `Size: ${item.size}`}
-                      </p>
-                    </div>
+                    <p className="font-medium">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </p>
                   </div>
-                  <p className="font-medium">${(item.price * item.quantity).toFixed(2)}</p>
+                ))
+              ) : (
+                <div className="py-8 text-center text-gray-500">
+                  Your cart is empty
                 </div>
-              ))
-            ) : (
-              <div className="py-8 text-center text-gray-500">
-                Your cart is empty
-              </div>
-            )}
-
-             
+              )}
 
               <div className="mt-6 space-y-2 border-t pt-4">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Total</span>
                   <span>${calculateTotal()}</span>
                 </div>
-              
               </div>
 
               <Button

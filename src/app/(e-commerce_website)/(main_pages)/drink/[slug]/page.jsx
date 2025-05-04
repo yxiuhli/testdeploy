@@ -1,30 +1,18 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
-import {
-  Card,
-  Button,
-  Rate,
-  Radio,
-  Space,
-  Typography,
-  message,
-  Tag,
-  Divider,
-} from "antd";
-import { HeartOutlined, HeartFilled, HomeOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+import { Radio, Space, Typography, message, Tag } from "antd";
+import { HomeOutlined } from "@ant-design/icons";
 import { useCart } from "@/contexts/CartContext";
-import Rating from "@/components/Rating";
 import { useDrinks } from "@/hooks/useDrinks";
 
-const { Title, Text, Paragraph } = Typography;
+const { Text } = Typography;
 
 const DrinkDetailPage = (props) => {
   const slug = props.params.slug;
   const [drink, setDrink] = useState({});
   const [selectedSize, setSelectedSize] = useState("M");
   const [quantity, setQuantity] = useState(1);
-  const [isLiked, setIsLiked] = useState(false);
-  const { cart, dispatch } = useCart();
+  const { dispatch } = useCart();
   const { getDrinkBySlug } = useDrinks();
 
   const sizes = ["S", "M", "L"];

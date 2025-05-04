@@ -2,15 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
-import {
-  Button,
-  Form,
-  Input,
-  Typography,
-  Row,
-  Col,
-  Space,
-} from "antd";
+import { Button, Form, Input, Typography, Row, Col } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -40,19 +32,19 @@ const RegisterPage = () => {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden flex">
           {/* Left Section */}
           <div className="w-1/2 p-8">
-            <Title level={3} style={{ color: '#be123c' }}>REGISTER</Title>
+            <Title level={3} style={{ color: "#be123c" }}>
+              REGISTER
+            </Title>
 
             <Form layout="vertical" onFinish={onFinish}>
               <Row gutter={16}>
                 <Col span={12}>
                   <Form.Item
-                    label={
-                      <>
-                        FIRST NAME
-                      </>
-                    }
+                    label={<>FIRST NAME</>}
                     name="firstName"
-                    rules={[{ required: true, message: "First name is required" }]}
+                    rules={[
+                      { required: true, message: "First name is required" },
+                    ]}
                   >
                     <Input placeholder="First Name" />
                   </Form.Item>
@@ -60,25 +52,19 @@ const RegisterPage = () => {
 
                 <Col span={12}>
                   <Form.Item
-                    label={
-                      <>
-                        LAST NAME
-                      </>
-                    }
+                    label={<>LAST NAME</>}
                     name="lastName"
-                    rules={[{ required: true, message: "Last name is required" }]}
+                    rules={[
+                      { required: true, message: "Last name is required" },
+                    ]}
                   >
                     <Input placeholder="Last Name" />
                   </Form.Item>
                 </Col>
               </Row>
-                    
+
               <Form.Item
-                label={
-                  <>
-                    EMAIL
-                  </>
-                }
+                label={<>EMAIL</>}
                 name="email"
                 rules={[
                   { required: true, message: "Email is required" },
@@ -88,14 +74,8 @@ const RegisterPage = () => {
                 <Input placeholder="Email Address" />
               </Form.Item>
 
-              
-
               <Form.Item
-                label={
-                  <>
-                    PASSWORD
-                  </>
-                }
+                label={<>PASSWORD</>}
                 name="password"
                 rules={[{ required: true, message: "Password is required" }]}
               >
@@ -103,13 +83,11 @@ const RegisterPage = () => {
               </Form.Item>
 
               <Form.Item
-                label={
-                  <>
-                    CONFIRM PASSWORD
-                  </>
-                }
+                label={<>CONFIRM PASSWORD</>}
                 name="confirmPassword"
-                rules={[{ required: true, message: "Please confirm your password" }]}
+                rules={[
+                  { required: true, message: "Please confirm your password" },
+                ]}
               >
                 <Input.Password placeholder="Confirm Password" />
               </Form.Item>
@@ -133,8 +111,14 @@ const RegisterPage = () => {
 
           {/* Right Section */}
           <div className="w-1/2 bg-rose-700 p-8 flex flex-col items-center justify-center text-white">
-            <img src="/img/logo.png" alt="logo" className="w-10 h-10 mr-2 mb-4" />
-            <h2 className="text-2xl font-semibold mb-2">Welcome to Yexiu Cafe!</h2>
+            <img
+              src="/img/logo.png"
+              alt="logo"
+              className="w-10 h-10 mr-2 mb-4"
+            />
+            <h2 className="text-2xl font-semibold mb-2">
+              Welcome to Yexiu Cafe!
+            </h2>
             <p className="mb-6">Already have an account?</p>
             <Button
               type="default"

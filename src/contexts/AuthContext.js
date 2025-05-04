@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const ROLES = {
   CUSTOMER: "CUSTOMER",
@@ -56,7 +56,7 @@ export function AuthProvider({ children }) {
         if (storedToken) {
           // Validate token with backend
           const validationResponse = await fetch(
-            `${API_BASE_URL}/api/auth/validate`,
+            `${API_BASE_URL}/auth/validate`,
             {
               method: "GET",
               headers: {
@@ -101,7 +101,7 @@ export function AuthProvider({ children }) {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
 
-      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -139,7 +139,7 @@ export function AuthProvider({ children }) {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
 
-      const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
+      const response = await fetch(`${API_BASE_URL}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -180,7 +180,7 @@ export function AuthProvider({ children }) {
     try {
       dispatch({ type: "SET_LOADING", payload: true });
 
-      const response = await fetch(`${API_BASE_URL}/api/auth/register/employee`, {
+      const response = await fetch(`${API_BASE_URL}/auth/register/employee`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

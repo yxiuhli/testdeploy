@@ -1,13 +1,12 @@
 "use client";
 import { ConfigProvider } from "antd";
-import { Input } from "postcss";
 
 const customTheme = {
   token: {
     colorPrimary: "#a50036", // Tailwind's rose-700
     borderRadius: 6, // Tailwind's rounded-md
     colorPrimaryHover: "#be123c",
-    
+
     colorBgContainer: "#ffffff",
     controlHeight: 40, // input/button height
     lineWidth: 2,
@@ -16,7 +15,6 @@ const customTheme = {
   },
   components: {
     Button: {
-
       defaultHoverBg: "#fff",
       defaultBg: "#be123c",
       defaultColor: "#fff",

@@ -1,12 +1,10 @@
 "use client";
 import { useState } from "react";
 import { Modal, Form, Input, DatePicker, Select, Button } from "antd";
-import { useAuth } from "@/contexts/AuthContext";
 
 const RequestSubmitModal = ({ isOpen, onClose, onSubmit }) => {
   const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
-  const { authFetch } = useAuth();
 
   const handleSubmit = async () => {
     try {
@@ -15,7 +13,7 @@ const RequestSubmitModal = ({ isOpen, onClose, onSubmit }) => {
       await onSubmit({
         ...values,
         startDate: values.dateRange[0].toISOString(),
-        endDate: values.dateRange[1].toISOString()
+        endDate: values.dateRange[1].toISOString(),
       });
       form.resetFields();
     } catch (error) {
@@ -49,7 +47,7 @@ const RequestSubmitModal = ({ isOpen, onClose, onSubmit }) => {
         <Form.Item
           label="Leave Type"
           name="type"
-          rules={[{ required: true, message: 'Please select leave type' }]}
+          rules={[{ required: true, message: "Please select leave type" }]}
         >
           <Select placeholder="Select leave type">
             <Select.Option value="PAID">Paid Leave</Select.Option>
@@ -60,7 +58,7 @@ const RequestSubmitModal = ({ isOpen, onClose, onSubmit }) => {
         <Form.Item
           label="Date Range"
           name="dateRange"
-          rules={[{ required: true, message: 'Please select date range' }]}
+          rules={[{ required: true, message: "Please select date range" }]}
         >
           <DatePicker.RangePicker className="w-full" />
         </Form.Item>
@@ -68,7 +66,7 @@ const RequestSubmitModal = ({ isOpen, onClose, onSubmit }) => {
         <Form.Item
           label="Reason"
           name="reason"
-          rules={[{ required: true, message: 'Please enter reason' }]}
+          rules={[{ required: true, message: "Please enter reason" }]}
         >
           <Input.TextArea placeholder="Write your reason" rows={4} />
         </Form.Item>

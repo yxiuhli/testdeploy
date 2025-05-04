@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Table, Button, Tag, Modal, Input, Avatar, Descriptions, Form } from "antd";
-import { EyeOutlined, EditOutlined, UserOutlined, MailOutlined, PhoneOutlined, EnvironmentOutlined, CalendarOutlined, IdcardOutlined } from "@ant-design/icons";
-import Image from "next/image";
+import { Table, Button, Tag, Modal, Input, Avatar, Form } from "antd";
+import { EyeOutlined, EditOutlined } from "@ant-design/icons";
 import { useEmployees } from "@/hooks/useEmployees";
 import EmployeeProfile from "../EmployeeProfile";
 
 const SignedEmployeesTable = () => {
   const [employees, setEmployees] = useState([]);
   const [viewModalVisible, setViewModalVisible] = useState(false);
-  const [updateSalaryModalVisible, setUpdateSalaryModalVisible] = useState(false);
+  const [updateSalaryModalVisible, setUpdateSalaryModalVisible] =
+    useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [form] = Form.useForm();
   const { getSignedEmployees, updateSalary } = useEmployees();
@@ -22,27 +22,25 @@ const SignedEmployeesTable = () => {
     setSelectedEmployee(employee);
     setViewModalVisible(true);
   };
-  
-  
 
   const handleUpdateSalary = (employee) => {
     setSelectedEmployee(employee);
     setUpdateSalaryModalVisible(true);
     form.setFieldsValue({
-      salary: employee.salary || ""
+      salary: employee.salary || "",
     });
   };
 
   const handleSaveSalary = async () => {
     try {
       const values = await form.validateFields();
-      
+
       if (!selectedEmployee) return;
-      
+
       await updateSalary(selectedEmployee.id, parseFloat(values.salary));
       const updatedList = await getSignedEmployees();
       setEmployees(updatedList);
-      
+
       setUpdateSalaryModalVisible(false);
       setSelectedEmployee(null);
       form.resetFields();
@@ -119,7 +117,11 @@ const SignedEmployeesTable = () => {
 
       {/* View Full Details Modal */}
       <Modal
-        title={<div className="text-xl font-bold text-gray-800">Employee Details</div>}
+        title={
+          <div className="text-xl font-bold text-gray-800">
+            Employee Details
+          </div>
+        }
         open={viewModalVisible}
         onCancel={() => setViewModalVisible(false)}
         footer={null}
@@ -127,7 +129,7 @@ const SignedEmployeesTable = () => {
         centered
       >
         {selectedEmployee && (
-          <EmployeeProfile employee={selectedEmployee} isPage={false}/>
+          <EmployeeProfile employee={selectedEmployee} isPage={false} />
         )}
       </Modal>
 
@@ -147,14 +149,16 @@ const SignedEmployeesTable = () => {
             label="Enter employee's new salary:"
             layout="horizontal"
             rules={[
-              { required: true, message: 'Please enter the new salary amount' },
-              { type: 'number', min: 0, message: 'Salary must be a positive number', transform: val => Number(val) }
+              { required: true, message: "Please enter the new salary amount" },
+              {
+                type: "number",
+                min: 0,
+                message: "Salary must be a positive number",
+                transform: (val) => Number(val),
+              },
             ]}
           >
-            <Input 
-              type="number" 
-              prefix="$" 
-            />
+            <Input type="number" prefix="$" />
           </Form.Item>
         </Form>
       </Modal>

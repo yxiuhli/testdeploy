@@ -1,3 +1,4 @@
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 import { useAuth } from "@/contexts/AuthContext";
 
 export const useDrinks = () => {
@@ -5,7 +6,7 @@ export const useDrinks = () => {
 
   const getDrinks = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/drinks");
+      const response = await fetch(`${API_BASE_URL}/drinks`);
       return await response.json();
     } catch (error) {
       console.error("Error fetching drinks:", error);
@@ -14,7 +15,7 @@ export const useDrinks = () => {
 
   const addDrink = async (drink) => {
     try {
-      const response = await authFetch("http://localhost:8080/api/drinks", {
+      const response = await authFetch(`${API_BASE_URL}/drinks`, {
         method: "POST",
         body: JSON.stringify(drink),
       });
@@ -32,7 +33,7 @@ export const useDrinks = () => {
 
   const updateDrink = async (drink) => {
     try {
-      const response = await authFetch(`http://localhost:8080/api/drinks/${drink.id}`, {
+      const response = await authFetch(`${API_BASE_URL}/drinks/${drink.id}`, {
         method: "PUT", 
         body: JSON.stringify(drink),
       });
@@ -50,7 +51,7 @@ export const useDrinks = () => {
 
   const deleteDrink = async (slug) => {
     try {
-      const response = await authFetch(`http://localhost:8080/api/drinks/${slug}`, {
+      const response = await authFetch(`${API_BASE_URL}/drinks/${slug}`, {
         method: "DELETE",
       });
   
@@ -74,7 +75,7 @@ export const useDrinks = () => {
 
   const getDrinkBySlug = async (slug) => {
     try {
-      const response = await fetch(`http://localhost:8080/api/drinks/${slug}`);
+      const response = await fetch(`${API_BASE_URL}/drinks/${slug}`);
       return await response.json();
     } catch (error) {
       console.error("Error fetching drink by slug:", error);
@@ -83,7 +84,7 @@ export const useDrinks = () => {
 
   const getBestSellingDrinks = async () => {
     try {
-      const response = await fetch("http://localhost:3000/drinks");
+      const response = await fetch(`${API_BASE_URL}/drinks`);
       return await response.json();
     } catch (error) {
       console.error("Error fetching best selling drinks:", error);
@@ -92,7 +93,7 @@ export const useDrinks = () => {
 
   const getRecentAddedDrinks = async () => {
     try {
-      const response = await fetch("http://localhost:3000/drinks");
+      const response = await fetch(`${API_BASE_URL}/drinks`);
       return await response.json();
     } catch (error) {
       console.error("Error fetching recent added drinks:", error);

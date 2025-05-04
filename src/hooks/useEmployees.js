@@ -1,10 +1,11 @@
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 import { useAuth } from "@/contexts/AuthContext";
 
 export const useEmployees = () => {
     const { authFetch } = useAuth();
     const approveEmployee = async (employeeId, position, salary) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/employees/approve/${employeeId}`, {
+            const response = await authFetch(`${API_BASE_URL}/employees/approve/${employeeId}`, {
                 method: "POST",
                 body: JSON.stringify({ position, salary}),
             });
@@ -17,7 +18,7 @@ export const useEmployees = () => {
 
     const rejectEmployee = async (employeeId) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/employees/reject/${employeeId}`, {
+            const response = await authFetch(`${API_BASE_URL}/employees/reject/${employeeId}`, {
                 method: "DELETE",
             });
             return await response.json();
@@ -28,7 +29,7 @@ export const useEmployees = () => {
 
     const updateSalary = async (employeeId, salary) => {
         try {
-            const response = await authFetch(`http://localhost:8080/api/employees/salary/${employeeId}`, {
+            const response = await authFetch(`${API_BASE_URL}/employees/salary/${employeeId}`, {
                 method: "PUT",
                 body: JSON.stringify({ salary }),
             });
@@ -41,7 +42,7 @@ export const useEmployees = () => {
     const getSignedEmployees = async () => {
         try {
             console.log("Fetching accepted employees...");
-            const response = await authFetch("http://localhost:8080/api/employees/signed");
+            const response = await authFetch(`${API_BASE_URL}/employees/signed`);
             return await response.json();
         } catch (error) {
             console.error("Error fetching accepted employees:", error);
@@ -50,7 +51,7 @@ export const useEmployees = () => {
 
     const getUnsignedEmployees = async () => {
         try {
-            const response = await authFetch("http://localhost:8080/api/employees/unsigned");
+            const response = await authFetch(`${API_BASE_URL}/employees/unsigned`);
             return await response.json();
         } catch (error) {
             console.error("Error fetching waiting employees:", error);

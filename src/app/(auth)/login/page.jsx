@@ -2,16 +2,9 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import {
-  Form,
-  Input,
-  Button,
-  Checkbox,
-  Typography,
-  Alert,
-} from "antd";
+import { Form, Input, Button, Typography, Alert } from "antd";
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 const LoginPage = () => {
   const { login, error: authError } = useAuth();
@@ -56,7 +49,9 @@ const LoginPage = () => {
         <div className="bg-white rounded-lg shadow-lg overflow-hidden flex">
           {/* Left Section */}
           <div className="w-1/2 p-8">
-            <Title level={3} style={{ color: '#be123c' }}>LOGIN</Title>
+            <Title level={3} style={{ color: "#be123c" }}>
+              LOGIN
+            </Title>
 
             {(error || authError) && (
               <Alert
@@ -110,14 +105,16 @@ const LoginPage = () => {
                   {isLoading ? "Logging in..." : "Login"}
                 </Button>
               </Form.Item>
-
-             
             </Form>
           </div>
 
           {/* Right Section */}
           <div className="w-1/2 bg-rose-700 p-8 flex flex-col items-center justify-center text-white">
-            <img src="/img/logo.png" alt="logo" className="w-10 h-10 mr-2 mb-4" />
+            <img
+              src="/img/logo.png"
+              alt="logo"
+              className="w-10 h-10 mr-2 mb-4"
+            />
             <h2 className="text-2xl font-semibold mb-2">Welcome back!</h2>
             <p className="mb-6">Don't have an account?</p>
             <Button

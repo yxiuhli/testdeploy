@@ -1,12 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Button, Modal, Form } from "antd";
+import { Modal, Form } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useDrinks } from "@/hooks/useDrinks";
 import { useCategories } from "@/contexts/CategoriesContext";
 import DrinksTable from "@/components/manage-drinks/DrinksTable";
 import DrinkFormModal from "@/components/manage-drinks/DrinkFormModal";
-
 
 const ManageDrinks = () => {
   const [form] = Form.useForm();
@@ -56,7 +55,9 @@ const ManageDrinks = () => {
       return Modal.error({ title: "Please upload an image first." });
     }
 
-    const selectedCategory = categories.find(cat => cat.id === values.category);
+    const selectedCategory = categories.find(
+      (cat) => cat.id === values.category
+    );
 
     const payload = {
       ...values,
@@ -99,7 +100,11 @@ const ManageDrinks = () => {
           </button>
         </div>
 
-        <DrinksTable drinks={drinks} handleEdit={handleEdit} handleDelete={handleDelete} />
+        <DrinksTable
+          drinks={drinks}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
 
         <DrinkFormModal
           form={form}

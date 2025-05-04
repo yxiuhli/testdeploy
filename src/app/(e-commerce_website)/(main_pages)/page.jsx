@@ -2,19 +2,12 @@
 import { useState, useEffect } from "react";
 import { Card } from "antd";
 
-import {
-  ArrowRight,
-  ArrowRightIcon,
-  ChevronLeft,
-  ChevronRight,
-  Star,
-} from "lucide-react";
+import { ArrowRightIcon, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
 import ProductCard from "@/components/ProductCard";
 import CategoryCard from "@/components/CategoryCard";
 import { useCategories } from "@/contexts/CategoriesContext";
 import { useDrinks } from "@/hooks/useDrinks";
-
 
 const HomePage = () => {
   const router = useRouter();
@@ -51,12 +44,12 @@ const HomePage = () => {
   ];
   const [bestSellingDrinks, setBestSellingDrinks] = useState([]);
   const [recentAddedDrinks, setRecentAddedDrinks] = useState([]);
-  const { categories } = useCategories()
+  const { categories } = useCategories();
 
-  const { getDrinks } = useDrinks()
+  const { getDrinks } = useDrinks();
 
-  const getBestSellingDrinks = getDrinks
-  const getRecentAddedDrinks = getDrinks
+  const getBestSellingDrinks = getDrinks;
+  const getRecentAddedDrinks = getDrinks;
 
   useEffect(() => {
     getBestSellingDrinks().then((data) => {

@@ -1,5 +1,4 @@
 import EmployeeWorkSchedule from "@/components/work-schedule/EmployeeWorkSchedule";
-import WorkScheduleCalendar from "@/components/work-schedule/AdminWorkSchedule";
 import React from "react";
 
 const WorkSchedulePage = () => {

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Table, Button, Tag, Modal, Descriptions } from "antd";
+import { Table, Button, Tag, Modal } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
 import { useOrders } from "@/hooks/useOrders";
 

@@ -1,5 +1,6 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 const CategoriesContext = createContext();
 
@@ -10,7 +11,7 @@ export const CategoriesProvider = ({ children }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/categories");
+      const response = await fetch(`${API_BASE_URL}/categories`);
       
       if (!response.ok) {
         throw new Error("Failed to fetch categories");

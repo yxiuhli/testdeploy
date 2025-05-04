@@ -1,14 +1,10 @@
 "use client";
 import React, { useState } from "react";
-import { PlusOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Modal, Form, Input, Button, DatePicker, TimePicker, Select, Avatar, message } from "antd";
-import dayjs from "dayjs";
+import { Modal, Button, TimePicker, message } from "antd";
 import AdminWorkSchedule from "@/components/work-schedule/AdminWorkSchedule";
 import { useWorkShifts } from "@/hooks/useWorkShifts";
-import { useEmployees } from "@/hooks/useEmployees";
 import CreateShiftModal from "@/components/work-schedule/CreateShiftModal";
 
-const { RangePicker } = TimePicker;
 const { confirm } = Modal;
 
 const WorkSchedulePage = () => {
@@ -29,7 +25,8 @@ const WorkSchedulePage = () => {
   const showDeleteConfirm = () => {
     confirm({
       title: `Delete Shift ${selectedShift}?`,
-      content: "This action cannot be undone and will permanently remove the selected shift.",
+      content:
+        "This action cannot be undone and will permanently remove the selected shift.",
       okText: "Delete",
       okType: "danger",
       cancelText: "Cancel",
@@ -51,7 +48,7 @@ const WorkSchedulePage = () => {
       <div className="px-8 pt-6 pb-4 bg-slate-200">
         <h1 className="text-2xl font-bold">WORK SCHEDULE</h1>
       </div>
-      
+
       <div className="pl-12 pr-8 pt-6">
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -60,22 +57,22 @@ const WorkSchedulePage = () => {
               View work schedule for all employees below!
             </h3>
           </div>
-          
+
           <div className="flex gap-4">
             <Button
               danger
-              className={`flex gap-2 items-center px-4 py-2 text-lg h-12 rounded-md ${selectedShift?"":"hidden"}`}
+              className={`flex gap-2 items-center px-4 py-2 text-lg h-12 rounded-md ${
+                selectedShift ? "" : "hidden"
+              }`}
               variant="outlined"
               color="red"
-              
               onClick={showDeleteConfirm}
             >
               Delete Selected Shift
             </Button>
-            
+
             <button
               className="flex gap-2 items-center text-white px-4 py-2 text-lg bg-rose-800 rounded-md hover:bg-rose-700 ring-1 ring-white"
-            
               onClick={() => setIsModalVisible(true)}
             >
               New Work Shift
@@ -91,7 +88,7 @@ const WorkSchedulePage = () => {
         onCreate={handleCreate}
       />
 
-      <AdminWorkSchedule 
+      <AdminWorkSchedule
         selectedShift={selectedShift}
         onSelectShift={setSelectedShift}
       />

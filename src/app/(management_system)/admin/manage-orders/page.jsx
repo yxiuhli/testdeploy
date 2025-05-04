@@ -1,5 +1,5 @@
 "use client";
-import { Card, Table, Modal, Button, Input, Tabs, Select, Tag } from "antd";
+import { Tabs } from "antd";
 
 import PaymentListTable from "@/components/manage-orders/PaymentListTable";
 import OrderListTable from "@/components/manage-orders/OrderListTable";
@@ -19,7 +19,7 @@ const ManageOrders = () => {
             key="2"
           >
             <OrderListTable />
-          </Tabs.TabPane>
+          </Tabs.TabPane>I
           <Tabs.TabPane
             tab="Payment List"
             key="3"
