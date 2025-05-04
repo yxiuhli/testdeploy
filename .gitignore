@@ -1,0 +1,17 @@
+.next
+node_modules
+package-lock.json
+yarn-error.log
+npm-debug.log
+.DS_Store
+.env
+.vscode
+*.log
+*.local
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+*.env.development
+*.env.test
+*.env.production
